@@ -33,6 +33,7 @@ flutter_native_splash:
   android: true
   ios: true
   image: "assets/images/logo.png"
+  color: "#000000"
 
 flutter:
   uses-material-design: true
