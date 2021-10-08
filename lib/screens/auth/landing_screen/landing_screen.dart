@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:volt_arena_app/screens/auth/login_screen/login_screen.dart';
+import 'package:volt_arena_app/screens/auth/signup_screen/signup_screen.dart';
 import 'package:volt_arena_app/utilities/custom_images.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
 
@@ -50,7 +52,7 @@ class _LandingScreenState extends State<LandingScreen> {
           _googleSignup(context),
           const SizedBox(height: 12),
           _guestUserButton(context),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           _signupLine(),
         ],
       ),
@@ -88,7 +90,9 @@ class _LandingScreenState extends State<LandingScreen> {
       children: <Widget>[
         const Text('''Don't have a account? '''),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(SignupScreen.routeName);
+          },
           child: const Text('Sign Up'),
         ),
       ],
@@ -122,11 +126,13 @@ class _LandingScreenState extends State<LandingScreen> {
 
   GestureDetector _loginButton(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).pushNamed(LoginScreen.routeName);
+      },
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: Utilities.padding / 2,
-          horizontal: Utilities.padding * 4,
+          horizontal: Utilities.padding * 7,
         ),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
