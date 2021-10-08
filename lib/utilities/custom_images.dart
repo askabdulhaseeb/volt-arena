@@ -1,6 +1,6 @@
 class CustomImages {
-  String emptyWishlist = 'assets/images/empty-wishlist.png';
-  String emptyCart = 'assets/images/emptycart.png';
-  String logo = 'assets/images/logo.png';
-  String icon = 'assets/images/icon.jpg';
+  static String get emptyWishlist => 'assets/images/empty-wishlist.png';
+  static String get emptyCart => 'assets/images/emptycart.png';
+  static String get logo => 'assets/images/logo.png';
+  static String get icon => 'assets/images/icon.jpg';
 }
