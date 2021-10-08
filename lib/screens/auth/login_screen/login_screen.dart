@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:volt_arena_app/utilities/custom_images.dart';
 import 'package:volt_arena_app/utilities/custom_validator.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
 import 'package:volt_arena_app/widgets/custom_button.dart';
@@ -32,7 +31,6 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               _loginWord(context),
-              const SizedBox(height: 30),
               CustomTextFormField(
                 title: 'Email',
                 controller: _email,
