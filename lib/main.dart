@@ -4,6 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:volt_arena_app/configs/theme.dart';
 import 'package:volt_arena_app/database/user_local_data.dart';
+import 'package:volt_arena_app/providers/cart_provider.dart';
+import 'package:volt_arena_app/providers/favs_provider.dart';
+import 'package:volt_arena_app/providers/orders_provider.dart';
+import 'package:volt_arena_app/providers/products.dart';
 import 'package:volt_arena_app/screens/main_screen/main_screen.dart';
 import 'screens/auth/landing_screen/landing_screen.dart';
 import 'screens/auth/login_screen/login_screen.dart';
@@ -33,7 +37,11 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(
           create: (context) => ThemeProvider(),
-        )
+        ),
+        ChangeNotifierProvider.value(value: CartProvider()),
+        ChangeNotifierProvider.value(value: FavsProvider()),
+        ChangeNotifierProvider.value(value: OrdersProvider()),
+        ChangeNotifierProvider.value(value: Products()),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, theme, _) => MaterialApp(
