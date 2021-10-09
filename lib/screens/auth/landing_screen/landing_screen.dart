@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:volt_arena_app/database/auth_methods.dart';
 import 'package:volt_arena_app/screens/auth/login_screen/login_screen.dart';
 import 'package:volt_arena_app/screens/auth/signup_screen/signup_screen.dart';
-import 'package:volt_arena_app/screens/home_screen/home_screen.dart';
+import 'package:volt_arena_app/screens/main_screen/main_screen.dart';
 import 'package:volt_arena_app/utilities/custom_images.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
 import 'package:volt_arena_app/widgets/show_loading.dart';
@@ -72,7 +72,7 @@ class _LandingScreenState extends State<LandingScreen> {
         final bool _login = await AuthMethod().signinWithGoogle();
         if (_login) {
           Navigator.of(context).pushNamedAndRemoveUntil(
-            HomeScreen.routeName,
+            MainScreen.routeName,
             (route) => false,
           );
         } else {
@@ -123,7 +123,7 @@ class _LandingScreenState extends State<LandingScreen> {
         final bool _login = await AuthMethod().loginAnonymosly();
         if (_login) {
           Navigator.of(context)
-              .pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
+              .pushNamedAndRemoveUntil(MainScreen.routeName, (route) => false);
         } else {
           Navigator.of(context).pop();
         }

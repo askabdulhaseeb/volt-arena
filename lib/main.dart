@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:volt_arena_app/configs/theme.dart';
 import 'package:volt_arena_app/database/user_local_data.dart';
-import 'package:volt_arena_app/screens/home_screen/home_screen.dart';
+import 'package:volt_arena_app/screens/main_screen/main_screen.dart';
 import 'screens/auth/landing_screen/landing_screen.dart';
 import 'screens/auth/login_screen/login_screen.dart';
 import 'screens/auth/signup_screen/signup_screen.dart';
@@ -43,12 +43,12 @@ class _MyAppState extends State<MyApp> {
           darkTheme: MyThemes.dark,
           home: (UserLocalData.getUserUID == '')
               ? const LandingScreen()
-              : const HomeScreen(),
+              : const MainScreen(),
           routes: <String, WidgetBuilder>{
             LandingScreen.routeName: (_) => const LandingScreen(),
             LoginScreen.routeName: (_) => const LoginScreen(),
             SignupScreen.routeName: (_) => const SignupScreen(),
-            HomeScreen.routeName: (_) => const HomeScreen(),
+            MainScreen.routeName: (_) => const MainScreen(),
           },
         ),
       ),

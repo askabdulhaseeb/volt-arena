@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:volt_arena_app/database/auth_methods.dart';
-import 'package:volt_arena_app/screens/home_screen/home_screen.dart';
+import 'package:volt_arena_app/screens/main_screen/main_screen.dart';
 import 'package:volt_arena_app/utilities/custom_validator.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
 import 'package:volt_arena_app/widgets/custom_button.dart';
@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                     if (_user != null) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                          HomeScreen.routeName, (route) => false);
+                          MainScreen.routeName, (route) => false);
                     } else {
                       Navigator.of(context).pop();
                       CustomToast.errorToast(

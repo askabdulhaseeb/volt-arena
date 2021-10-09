@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
-import 'package:volt_arena_app/widgets/custom_drawer.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-  static const String routeName = '/HomeScreen';
+class FeedPage extends StatelessWidget {
+  const FeedPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,10 +25,6 @@ class HomeScreen extends StatelessWidget {
             icon: const Icon(Icons.shopping_cart_outlined),
           ),
         ],
-      ),
-      drawer: const CustomDrawer(),
-      body: const Center(
-        child: Text('Coming Soon'),
       ),
     );
   }
