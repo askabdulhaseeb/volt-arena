@@ -3,7 +3,6 @@ import 'package:volt_arena_app/models/cart_attr.dart';
 
 class CartProvider with ChangeNotifier {
   Map<String, CartAttr> _cartItems = {};
-
   Map<String, CartAttr> get getCartItems {
     return {..._cartItems};
   }
@@ -20,24 +19,28 @@ class CartProvider with ChangeNotifier {
       String productId, double price, String title, String imageUrl) {
     if (_cartItems.containsKey(productId)) {
       _cartItems.update(
-          productId,
-          (exitingCartItem) => CartAttr(
-              id: exitingCartItem.id,
-              productId: exitingCartItem.productId,
-              title: exitingCartItem.title,
-              price: exitingCartItem.price,
-              quantity: exitingCartItem.quantity! + 1,
-              imageUrl: exitingCartItem.imageUrl));
+        productId,
+        (exitingCartItem) => CartAttr(
+          id: exitingCartItem.id,
+          productId: exitingCartItem.productId,
+          title: exitingCartItem.title,
+          price: exitingCartItem.price,
+          quantity: exitingCartItem.quantity! + 1,
+          imageUrl: exitingCartItem.imageUrl,
+        ),
+      );
     } else {
       _cartItems.putIfAbsent(
-          productId,
-          () => CartAttr(
-              id: DateTime.now().toString(),
-              productId: productId,
-              title: title,
-              price: price,
-              quantity: 1,
-              imageUrl: imageUrl));
+        productId,
+        () => CartAttr(
+          id: DateTime.now().toString(),
+          productId: productId,
+          title: title,
+          price: price,
+          quantity: 1,
+          imageUrl: imageUrl,
+        ),
+      );
     }
     notifyListeners();
   }
@@ -47,14 +50,16 @@ class CartProvider with ChangeNotifier {
   ) {
     if (_cartItems.containsKey(productId)) {
       _cartItems.update(
-          productId,
-          (exitingCartItem) => CartAttr(
-              id: exitingCartItem.id,
-              productId: exitingCartItem.productId,
-              title: exitingCartItem.title,
-              price: exitingCartItem.price,
-              quantity: exitingCartItem.quantity! - 1,
-              imageUrl: exitingCartItem.imageUrl));
+        productId,
+        (exitingCartItem) => CartAttr(
+          id: exitingCartItem.id,
+          productId: exitingCartItem.productId,
+          title: exitingCartItem.title,
+          price: exitingCartItem.price,
+          quantity: exitingCartItem.quantity! - 1,
+          imageUrl: exitingCartItem.imageUrl,
+        ),
+      );
     }
     notifyListeners();
   }

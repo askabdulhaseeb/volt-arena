@@ -29,17 +29,18 @@ class Product with ChangeNotifier {
   });
   factory Product.fromDocument(doc) {
     return Product(
-        productId: doc.data()["productId"],
-        title: doc.data()["productTitle"],
-        description: doc.data()["productDescription"],
-        price: double.parse(doc.data()["price"]),
-        imageUrl: doc.data()["productImage"],
-        groupMembers: doc.data()["groupMembers"],
-        isIndividual: doc.data()["isIndividual"],
-        gameTime: doc.data()["gameTime"],
-        isFavorite: doc.data()["isFavorite"],
-        pallets: doc.data()["pallets"],
-        productCategoryName: doc.data()["productCategory"],
-        isPopular: true);
+      productId: doc.data()["productId"],
+      title: doc.data()["productTitle"],
+      description: doc.data()["productDescription"],
+      price: double.parse(doc.data()["price"]),
+      imageUrl: doc.data()["productImage"],
+      groupMembers: doc.data()["groupMembers"],
+      isIndividual: doc.data()["isIndividual"],
+      gameTime: doc.data()["gameTime"],
+      isFavorite: doc.data()["isFavorite"],
+      pallets: doc.data()["pallets"],
+      productCategoryName: doc.data()["productCategory"],
+      isPopular: true,
+    );
   }
 }
