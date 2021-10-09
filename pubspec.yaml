@@ -21,6 +21,8 @@ dependencies:
 
   fluttertoast: ^8.0.8
   image_picker: ^0.8.4+2
+  
+  badges: ^2.0.1
 
   cupertino_icons: ^1.0.3
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'pages/services_page/services_page.dart';
 import 'pages/booking_page/booking_page.dart';
 import 'pages/calender_page/calender_page.dart';
 import 'pages/chat_list_page/chat_list_page.dart';
-import 'pages/feed_page/feed_page.dart';
 import 'pages/my_booking_page/my_booking_page.dart';
 import 'pages/search_page/search_page.dart';
 
@@ -16,7 +16,7 @@ class BottomBarScreen extends StatefulWidget {
 class _BottomBarScreenState extends State<BottomBarScreen> {
   int _selectedPageIndex = 0;
   final List<Widget> pages = const <Widget>[
-    FeedPage(),
+    ServicesPage(),
     SearchPage(),
     MyBookingPage(),
     CalenderPage(),
