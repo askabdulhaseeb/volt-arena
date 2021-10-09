@@ -1,9 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:volt_arena_app/database/auth_methods.dart';
+import 'package:volt_arena_app/screens/home_screen/home_screen.dart';
 import 'package:volt_arena_app/utilities/custom_validator.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
 import 'package:volt_arena_app/widgets/custom_button.dart';
 import 'package:volt_arena_app/widgets/custom_textformfield.dart';
+import 'package:volt_arena_app/widgets/custom_toast.dart';
 import 'package:volt_arena_app/widgets/password_textformfield.dart';
+import 'package:volt_arena_app/widgets/show_loading.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -31,18 +36,34 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               _loginWord(context),
+              const SizedBox(height: 30),
               CustomTextFormField(
                 title: 'Email',
                 controller: _email,
-                hint: 'example@example.com',
+                hint: 'test@test.com',
                 validator: (String? value) => CustomValidator.email(value),
                 autoFocus: true,
               ),
               PasswordTextFormField(controller: _password),
               _forgetPassword(),
               CustomTextButton(
-                onTap: () {
-                  if (_key.currentState!.validate()) {}
+                onTap: () async {
+                  if (_key.currentState!.validate()) {
+                    showLoadingDislog(context);
+                    final User? _user =
+                        await AuthMethod().loginWithEmailAndPassword(
+                      _email.text.trim(),
+                      _password.text.trim(),
+                    );
+                    if (_user != null) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          HomeScreen.routeName, (route) => false);
+                    } else {
+                      Navigator.of(context).pop();
+                      CustomToast.errorToast(
+                          message: 'email OR password in incorrect');
+                    }
+                  }
                 },
                 text: 'Login',
               ),

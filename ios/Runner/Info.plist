@@ -28,11 +28,12 @@
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
+		<key>UIStatusBarHidden</key>
+		<false/>
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
-			<string>UIInterfaceOrientationLandscapeLeft</string>
-			<string>UIInterfaceOrientationLandscapeRight</string>
+			<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		</array>
 		<key>UISupportedInterfaceOrientations~ipad</key>
 		<array>
@@ -43,7 +44,24 @@
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false/>
-		<key>UIStatusBarHidden</key>
-		<false/>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Need Photo Library Access</string>
+		<key>NSCameraUsageDescription</key>
+		<string>This app requires access to the camera.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>This app does not require access to the microphone.</string>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<!-- TODO Replace this value: -->
+					<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+					<string>com.googleusercontent.apps.364932058933-dc71vm6o2v2oj7n995ghojesqosa9bab</string>
+				</array>
+			</dict>
+		</array>
 	</dict>
 </plist>

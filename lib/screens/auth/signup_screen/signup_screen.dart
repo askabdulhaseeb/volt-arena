@@ -1,9 +1,19 @@
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:volt_arena_app/database/auth_methods.dart';
+import 'package:volt_arena_app/database/user_api.dart';
+import 'package:volt_arena_app/models/app_user.dart';
+import 'package:volt_arena_app/screens/auth/landing_screen/landing_screen.dart';
 import 'package:volt_arena_app/utilities/custom_validator.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
 import 'package:volt_arena_app/widgets/custom_button.dart';
 import 'package:volt_arena_app/widgets/custom_textformfield.dart';
+import 'package:volt_arena_app/widgets/custom_toast.dart';
 import 'package:volt_arena_app/widgets/password_textformfield.dart';
+import 'package:volt_arena_app/widgets/show_loading.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -20,6 +30,46 @@ class _SignupScreenState extends State<SignupScreen> {
     final TextEditingController _password = TextEditingController();
     final TextEditingController _confirmPassword = TextEditingController();
     final GlobalKey<FormState> _key = GlobalKey<FormState>();
+    File? _pickedImage;
+    void _submitForm() async {
+      if (_key.currentState!.validate()) {
+        if (_password.text.trim() == _confirmPassword.text.trim()) {
+          showLoadingDislog(context);
+          FocusScope.of(context).unfocus();
+          final User? _user = await AuthMethod().signupWithEmailAndPassword(
+            email: _email.text,
+            password: _password.text,
+          );
+          String date = DateTime.now().toString();
+          DateTime dateparse = DateTime.parse(date);
+          String formattedDate =
+              "${dateparse.day}-${dateparse.month}-${dateparse.year}";
+          AppUser _appUser = AppUser(
+            id: _user!.uid,
+            name: _name.text.trim(),
+            email: _email.text.trim(),
+            phoneNo: '',
+            imageUrl: '',
+            createdAt: Timestamp.now(),
+            joinedAt: formattedDate,
+            password: _password.text.trim(),
+          );
+          final bool _save = await UserAPI().addUser(_appUser);
+          if (_save) {
+            CustomToast.successToast(message: 'Signup successfully');
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                LandingScreen.routeName, (route) => false);
+          } else {
+            Navigator.of(context).pop();
+          }
+        } else {
+          CustomToast.errorToast(
+            message: 'Password and confirm password should be same',
+          );
+        }
+      }
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -30,36 +80,83 @@ class _SignupScreenState extends State<SignupScreen> {
         padding: EdgeInsets.symmetric(horizontal: Utilities.padding),
         child: Form(
           key: _key,
-          child: Column(
-            children: [
-              _signupLine(context),
-              const SizedBox(height: 30),
-              CustomTextFormField(
-                title: 'Name',
-                controller: _name,
-                autoFocus: true,
-                validator: (String? value) => CustomValidator.lessThen4(value),
-              ),
-              CustomTextFormField(
-                title: 'Email',
-                controller: _email,
-                validator: (String? value) => CustomValidator.email(value),
-              ),
-              PasswordTextFormField(controller: _password),
-              PasswordTextFormField(
-                controller: _confirmPassword,
-                title: 'Confirm Password',
-              ),
-              CustomTextButton(
-                  onTap: () {
-                    if (_key.currentState!.validate()) {}
-                  },
-                  text: 'Sign up')
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _signupLine(context),
+                const SizedBox(height: 20),
+                _imageWidget(context, _pickedImage),
+                const SizedBox(height: 20),
+                CustomTextFormField(
+                  title: 'Name',
+                  controller: _name,
+                  autoFocus: true,
+                  validator: (String? value) =>
+                      CustomValidator.lessThen4(value),
+                ),
+                CustomTextFormField(
+                  title: 'Email',
+                  controller: _email,
+                  validator: (String? value) => CustomValidator.email(value),
+                ),
+                PasswordTextFormField(controller: _password),
+                PasswordTextFormField(
+                  controller: _confirmPassword,
+                  title: 'Confirm Password',
+                ),
+                CustomTextButton(
+                  onTap: () => _submitForm(),
+                  text: 'Sign up',
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _imageWidget(BuildContext context, File? _pickedImage) {
+    return Stack(
+      children: [
+        CircleAvatar(
+          radius: 68,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: CircleAvatar(
+            radius: 66,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            child: CircleAvatar(
+              radius: 60,
+              backgroundColor: Theme.of(context).primaryColor,
+              backgroundImage:
+                  _pickedImage == null ? null : FileImage(_pickedImage),
+              foregroundImage:
+                  _pickedImage == null ? null : FileImage(_pickedImage),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 0,
+          right: 0,
+          child: IconButton(
+            onPressed: () {
+              _pickImageGallery(_pickedImage);
+            },
+            icon: const Icon(Icons.edit, size: 40),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _pickImageGallery(File? _pickedImage) async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedImage =
+        await picker.pickImage(source: ImageSource.gallery);
+    final File pickedImageFile = File(pickedImage!.path);
+    setState(() {
+      _pickedImage = pickedImageFile;
+    });
   }
 
   Row _signupLine(BuildContext context) {

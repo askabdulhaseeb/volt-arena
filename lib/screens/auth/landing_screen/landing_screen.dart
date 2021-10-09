@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:volt_arena_app/database/auth_methods.dart';
 import 'package:volt_arena_app/screens/auth/login_screen/login_screen.dart';
 import 'package:volt_arena_app/screens/auth/signup_screen/signup_screen.dart';
+import 'package:volt_arena_app/screens/home_screen/home_screen.dart';
 import 'package:volt_arena_app/utilities/custom_images.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
+import 'package:volt_arena_app/widgets/show_loading.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({Key? key}) : super(key: key);
@@ -16,6 +19,7 @@ class _LandingScreenState extends State<LandingScreen> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -54,6 +58,7 @@ class _LandingScreenState extends State<LandingScreen> {
           _guestUserButton(context),
           const SizedBox(height: 30),
           _signupLine(),
+          const SizedBox(height: 10),
         ],
       ),
     );
@@ -62,7 +67,16 @@ class _LandingScreenState extends State<LandingScreen> {
   InkWell _googleSignup(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(Utilities.borderRadius),
-      onTap: () {},
+      onTap: () async {
+        showLoadingDislog(context);
+        final bool _login = await AuthMethod().signinWithGoogle();
+        if (_login) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
+        } else {
+          Navigator.of(context).pop();
+        }
+      },
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: Utilities.padding / 2,
@@ -102,7 +116,16 @@ class _LandingScreenState extends State<LandingScreen> {
   InkWell _guestUserButton(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(Utilities.borderRadius),
-      onTap: () {},
+      onTap: () async {
+        showLoadingDislog(context);
+        final bool _login = await AuthMethod().loginAnonymosly();
+        if (_login) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
+        } else {
+          Navigator.of(context).pop();
+        }
+      },
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: Utilities.padding / 2,
