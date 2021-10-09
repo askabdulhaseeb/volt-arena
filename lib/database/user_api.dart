@@ -21,6 +21,7 @@ class UserAPI {
         .set(appUser.toMap())
         .catchError((Object e) {
       CustomToast.successToast(message: e.toString());
+      // ignore: invalid_return_type_for_catch_error
       return false;
     });
     return true;

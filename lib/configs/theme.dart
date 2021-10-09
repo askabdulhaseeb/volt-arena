@@ -21,8 +21,9 @@ class ThemeProvider extends ChangeNotifier {
 
 class MyThemes {
   static final dark = ThemeData(
-    scaffoldBackgroundColor: Colors.grey.shade900,
+    scaffoldBackgroundColor: Colors.black,
     primaryColor: Colors.orange,
+    dividerTheme: const DividerThemeData(color: Colors.orange, thickness: 0.5),
     colorScheme: const ColorScheme.dark(
       primary: Colors.orange,
       secondary: Colors.red,
@@ -32,6 +33,7 @@ class MyThemes {
   static final light = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade300,
     primaryColor: Colors.orange,
+    dividerTheme: const DividerThemeData(color: Colors.orange, thickness: 0.5),
     colorScheme: const ColorScheme.light(
       primary: Colors.orange,
       secondary: Colors.red,
