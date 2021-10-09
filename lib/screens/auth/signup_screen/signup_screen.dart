@@ -7,6 +7,7 @@ import 'package:volt_arena_app/database/auth_methods.dart';
 import 'package:volt_arena_app/database/user_api.dart';
 import 'package:volt_arena_app/models/app_user.dart';
 import 'package:volt_arena_app/screens/auth/landing_screen/landing_screen.dart';
+import 'package:volt_arena_app/utilities/custom_images.dart';
 import 'package:volt_arena_app/utilities/custom_validator.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
 import 'package:volt_arena_app/widgets/custom_button.dart';
@@ -70,6 +71,53 @@ class _SignupScreenState extends State<SignupScreen> {
       }
     }
 
+    void _pickImageGallery() async {
+      final ImagePicker picker = ImagePicker();
+      final XFile? pickedImage =
+          await picker.pickImage(source: ImageSource.gallery);
+      final File pickedImageFile = File(pickedImage!.path);
+      setState(() {
+        _pickedImage = pickedImageFile;
+      });
+    }
+
+    Widget _imageWidget() {
+      return Stack(
+        children: [
+          CircleAvatar(
+            radius: 68,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: CircleAvatar(
+              radius: 66,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              child: CircleAvatar(
+                radius: 60,
+                backgroundColor: Theme.of(context).primaryColor,
+                backgroundImage: _pickedImage != null
+                    ? FileImage(_pickedImage!)
+                    : AssetImage(CustomImages.icon) as ImageProvider,
+              ),
+            ),
+          ),
+          Positioned(
+            top: -6,
+            right: -6,
+            child: IconButton(
+              tooltip: 'Edit Image',
+              onPressed: () {
+                _pickImageGallery();
+              },
+              icon: Icon(
+                Icons.edit,
+                size: 40,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -85,7 +133,7 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 _signupLine(context),
                 const SizedBox(height: 20),
-                _imageWidget(context, _pickedImage),
+                _imageWidget(),
                 const SizedBox(height: 20),
                 CustomTextFormField(
                   title: 'Name',
@@ -114,49 +162,6 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
       ),
     );
-  }
-
-  Widget _imageWidget(BuildContext context, File? _pickedImage) {
-    return Stack(
-      children: [
-        CircleAvatar(
-          radius: 68,
-          backgroundColor: Theme.of(context).primaryColor,
-          child: CircleAvatar(
-            radius: 66,
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            child: CircleAvatar(
-              radius: 60,
-              backgroundColor: Theme.of(context).primaryColor,
-              backgroundImage:
-                  _pickedImage == null ? null : FileImage(_pickedImage),
-              foregroundImage:
-                  _pickedImage == null ? null : FileImage(_pickedImage),
-            ),
-          ),
-        ),
-        Positioned(
-          top: 0,
-          right: 0,
-          child: IconButton(
-            onPressed: () {
-              _pickImageGallery(_pickedImage);
-            },
-            icon: const Icon(Icons.edit, size: 40),
-          ),
-        ),
-      ],
-    );
-  }
-
-  void _pickImageGallery(File? _pickedImage) async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? pickedImage =
-        await picker.pickImage(source: ImageSource.gallery);
-    final File pickedImageFile = File(pickedImage!.path);
-    setState(() {
-      _pickedImage = pickedImageFile;
-    });
   }
 
   Row _signupLine(BuildContext context) {

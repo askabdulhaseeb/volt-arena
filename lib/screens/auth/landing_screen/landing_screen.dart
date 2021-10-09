@@ -58,7 +58,7 @@ class _LandingScreenState extends State<LandingScreen> {
           _guestUserButton(context),
           const SizedBox(height: 30),
           _signupLine(),
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
         ],
       ),
     );
@@ -71,8 +71,10 @@ class _LandingScreenState extends State<LandingScreen> {
         showLoadingDislog(context);
         final bool _login = await AuthMethod().signinWithGoogle();
         if (_login) {
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            HomeScreen.routeName,
+            (route) => false,
+          );
         } else {
           Navigator.of(context).pop();
         }

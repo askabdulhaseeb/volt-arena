@@ -16,6 +16,23 @@ class AuthMethod {
   Future<bool> loginAnonymosly() async {
     try {
       await _auth.signInAnonymously();
+      var date = DateTime.now().toString();
+      var dateparse = DateTime.parse(date);
+      var formattedDate =
+          "${dateparse.day}-${dateparse.month}-${dateparse.year}";
+      final AppUser appUser = AppUser(
+        id: DateTime.now().microsecond.toString(),
+        name: 'Guest User',
+        email: 'guest@guest.com',
+        phoneNo: '',
+        imageUrl: '',
+        androidNotificationToken: '',
+        createdAt: Timestamp.now(),
+        joinedAt: formattedDate,
+        password: '',
+        isAdmin: false,
+      );
+      UserLocalData().storeAppUserData(appUser: appUser);
       return true;
     } catch (error) {
       CustomToast.errorToast(message: error.toString());

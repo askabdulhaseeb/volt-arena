@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:volt_arena_app/database/auth_methods.dart';
 import 'package:volt_arena_app/database/user_local_data.dart';
+import 'package:volt_arena_app/screens/auth/landing_screen/landing_screen.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
 
 import 'circular_profile_image.dart';
@@ -63,7 +65,14 @@ class CustomDrawer extends StatelessWidget {
             trailing: forwardArrow,
           ),
           ListTile(
-            onTap: () {},
+            onTap: () async {
+              showLicensePage(context: context);
+              await AuthMethod().signOut();
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                LandingScreen.routeName,
+                (route) => false,
+              );
+            },
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),
           ),
