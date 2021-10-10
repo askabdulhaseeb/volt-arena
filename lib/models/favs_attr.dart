@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +9,7 @@ class FavsAttr with ChangeNotifier {
   final String? imageUrl;
 
   Map<String, dynamic> toMap() {
-    return {
+    return <String, dynamic>{
       'id': id,
       'title': title,
       'price': price,
@@ -19,6 +17,7 @@ class FavsAttr with ChangeNotifier {
     };
   }
 
+  // ignore: sort_constructors_first
   factory FavsAttr.fromDocument(DocumentSnapshot<Map<String, dynamic>> docs) {
     return FavsAttr(
       id: docs.data()!['id'].toString(),

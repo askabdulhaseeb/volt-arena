@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:volt_arena_app/database/auth_methods.dart';
-import 'package:volt_arena_app/database/user_local_data.dart';
-import 'package:volt_arena_app/screens/auth/landing_screen/landing_screen.dart';
-import 'package:volt_arena_app/utilities/utilities.dart';
-
+import '../database/auth_methods.dart';
+import '../database/user_local_data.dart';
+import '../screens/auth/landing_screen/landing_screen.dart';
+import '../utilities/utilities.dart';
 import 'circular_profile_image.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -70,7 +69,7 @@ class CustomDrawer extends StatelessWidget {
               await AuthMethod().signOut();
               Navigator.of(context).pushNamedAndRemoveUntil(
                 LandingScreen.routeName,
-                (route) => false,
+                (Route<dynamic> route) => false,
               );
             },
             leading: const Icon(Icons.logout),

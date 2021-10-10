@@ -6,7 +6,8 @@ class ThemeProvider extends ChangeNotifier {
 
   bool get isDarkMode {
     if (themeMode == ThemeMode.system) {
-      final brightness = SchedulerBinding.instance!.window.platformBrightness;
+      final Brightness brightness =
+          SchedulerBinding.instance!.window.platformBrightness;
       return brightness == Brightness.dark;
     } else {
       return themeMode == ThemeMode.dark;
@@ -20,7 +21,7 @@ class ThemeProvider extends ChangeNotifier {
 }
 
 class MyThemes {
-  static final dark = ThemeData(
+  static final ThemeData dark = ThemeData(
     scaffoldBackgroundColor: Colors.black,
     primaryColor: Colors.orange,
     dividerTheme: const DividerThemeData(color: Colors.orange, thickness: 0.5),
@@ -30,7 +31,7 @@ class MyThemes {
     ),
   );
 
-  static final light = ThemeData(
+  static final ThemeData light = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade300,
     primaryColor: Colors.orange,
     dividerTheme: const DividerThemeData(color: Colors.orange, thickness: 0.5),

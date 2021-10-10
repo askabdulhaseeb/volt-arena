@@ -3,22 +3,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:volt_arena_app/database/auth_methods.dart';
-import 'package:volt_arena_app/database/user_api.dart';
-import 'package:volt_arena_app/models/app_user.dart';
-import 'package:volt_arena_app/screens/auth/landing_screen/landing_screen.dart';
-import 'package:volt_arena_app/utilities/custom_images.dart';
-import 'package:volt_arena_app/utilities/custom_validator.dart';
-import 'package:volt_arena_app/utilities/utilities.dart';
-import 'package:volt_arena_app/widgets/custom_button.dart';
-import 'package:volt_arena_app/widgets/custom_textformfield.dart';
-import 'package:volt_arena_app/widgets/custom_toast.dart';
-import 'package:volt_arena_app/widgets/password_textformfield.dart';
-import 'package:volt_arena_app/widgets/show_loading.dart';
+import '../../../database/auth_methods.dart';
+import '../../../database/user_api.dart';
+import '../../../models/app_user.dart';
+import '../../../utilities/custom_images.dart';
+import '../../../utilities/custom_validator.dart';
+import '../../../utilities/utilities.dart';
+import '../../../widgets/custom_button.dart';
+import '../../../widgets/custom_textformfield.dart';
+import '../../../widgets/custom_toast.dart';
+import '../../../widgets/password_textformfield.dart';
+import '../../../widgets/show_loading.dart';
+import '../landing_screen/landing_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
-  static const routeName = '/SignupScreen';
+  static const String routeName = '/SignupScreen';
   @override
   State<SignupScreen> createState() => _SignupScreenState();
 }
@@ -44,7 +44,7 @@ class _SignupScreenState extends State<SignupScreen> {
           String date = DateTime.now().toString();
           DateTime dateparse = DateTime.parse(date);
           String formattedDate =
-              "${dateparse.day}-${dateparse.month}-${dateparse.year}";
+              '${dateparse.day}-${dateparse.month}-${dateparse.year}';
           AppUser _appUser = AppUser(
             id: _user!.uid,
             name: _name.text.trim(),
@@ -59,7 +59,7 @@ class _SignupScreenState extends State<SignupScreen> {
           if (_save) {
             CustomToast.successToast(message: 'Signup successfully');
             Navigator.of(context).pushNamedAndRemoveUntil(
-                LandingScreen.routeName, (route) => false);
+                LandingScreen.routeName, (Route<dynamic> route) => false);
           } else {
             Navigator.of(context).pop();
           }
@@ -83,7 +83,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
     Widget _imageWidget() {
       return Stack(
-        children: [
+        children: <Widget>[
           CircleAvatar(
             radius: 68,
             backgroundColor: Theme.of(context).primaryColor,
@@ -130,7 +130,7 @@ class _SignupScreenState extends State<SignupScreen> {
           key: _key,
           child: SingleChildScrollView(
             child: Column(
-              children: [
+              children: <Widget>[
                 _signupLine(context),
                 const SizedBox(height: 20),
                 _imageWidget(),

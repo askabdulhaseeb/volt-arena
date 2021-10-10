@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:volt_arena_app/models/favs_attr.dart';
 
 class FavsProvider with ChangeNotifier {
-  Map<String, FavsAttr> _favsItems = {};
+ final Map<String, FavsAttr> _favsItems = <String, FavsAttr>{};
   Map<String, FavsAttr> get getFavsItems {
-    return {..._favsItems};
+    return <String, FavsAttr>{..._favsItems};
   }
 
   void addAndRemoveFromFav(

@@ -1,18 +1,7 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
 class OrdersAttr with ChangeNotifier {
-  final String? orderId;
-  final String? userId;
-  final String? productId;
-  final String? title;
-  final String? price;
-  final String? imageUrl;
-  final String? quantity;
-  final Timestamp? orderDate;
-
   OrdersAttr({
     this.orderId,
     this.userId,
@@ -23,9 +12,17 @@ class OrdersAttr with ChangeNotifier {
     this.quantity,
     this.orderDate,
   });
+  final String? orderId;
+  final String? userId;
+  final String? productId;
+  final String? title;
+  final String? price;
+  final String? imageUrl;
+  final String? quantity;
+  final Timestamp? orderDate;
 
   Map<String, dynamic> toMap() {
-    return {
+    return <String, dynamic>{
       'orderId': orderId,
       'userId': userId,
       'productId': productId,
@@ -37,6 +34,7 @@ class OrdersAttr with ChangeNotifier {
     };
   }
 
+  // ignore: non_constant_identifier_names, sort_constructors_first
   factory OrdersAttr.FromDocument(DocumentSnapshot<Map<String, dynamic>> docs) {
     return OrdersAttr(
       orderId: docs.data()!['orderId'].toString(),

@@ -2,13 +2,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:volt_arena_app/configs/theme.dart';
-import 'package:volt_arena_app/database/user_local_data.dart';
-import 'package:volt_arena_app/providers/cart_provider.dart';
-import 'package:volt_arena_app/providers/favs_provider.dart';
-import 'package:volt_arena_app/providers/orders_provider.dart';
-import 'package:volt_arena_app/providers/products.dart';
-import 'package:volt_arena_app/screens/main_screen/main_screen.dart';
+import 'configs/theme.dart';
+import 'database/user_local_data.dart';
+import 'providers/cart_provider.dart';
+import 'providers/favs_provider.dart';
+import 'providers/orders_provider.dart';
+import 'providers/products.dart';
+import 'screens/main_screen/main_screen.dart';
 import 'screens/auth/landing_screen/landing_screen.dart';
 import 'screens/auth/login_screen/login_screen.dart';
 import 'screens/auth/signup_screen/signup_screen.dart';
@@ -17,7 +17,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
   UserLocalData.init();
-  await SystemChrome.setPreferredOrientations([
+  await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
@@ -34,17 +34,18 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
+      // ignore: always_specify_types
       providers: [
-        ChangeNotifierProvider(
-          create: (context) => ThemeProvider(),
+        ChangeNotifierProvider<ThemeProvider>(
+          create: (BuildContext context) => ThemeProvider(),
         ),
-        ChangeNotifierProvider.value(value: CartProvider()),
-        ChangeNotifierProvider.value(value: FavsProvider()),
-        ChangeNotifierProvider.value(value: OrdersProvider()),
-        ChangeNotifierProvider.value(value: Products()),
+        ChangeNotifierProvider<CartProvider>.value(value: CartProvider()),
+        ChangeNotifierProvider<FavsProvider>.value(value: FavsProvider()),
+        ChangeNotifierProvider<OrdersProvider>.value(value: OrdersProvider()),
+        ChangeNotifierProvider<Products>.value(value: Products()),
       ],
       child: Consumer<ThemeProvider>(
-        builder: (context, theme, _) => MaterialApp(
+        builder: (BuildContext context, ThemeProvider theme, _) => MaterialApp(
           title: 'Volt Arena',
           themeMode: theme.themeMode,
           theme: MyThemes.light,
@@ -66,4 +67,5 @@ class _MyAppState extends State<MyApp> {
 
 // Certificate fingerprints:
 //   SHA1: F6:3C:6E:07:37:98:D1:37:8D:8D:AD:2B:80:BE:5E:2C:50:EF:71:F9
-//   SHA256: B8:1F:B2:FF:CB:2E:A2:45:12:1B:22:43:35:C5:B6:CC:A5:3B:CE:D4:6B:97:93:EF:76:D9:81:0F:F9:16:4C:6E
+//   SHA256: B8:1F:B2:FF:CB:2E:A2:45:12:1B:22:43:35:C5:B6:CC:A5:3B:CE:D4:6B:97:
+// 93:EF:76:D9:81:0F:F9:16:4C:6E

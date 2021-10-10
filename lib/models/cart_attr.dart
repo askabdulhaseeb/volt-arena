@@ -1,9 +1,15 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class CartAttr with ChangeNotifier {
+  CartAttr({
+    required this.productId,
+    this.id,
+    this.title,
+    this.quantity,
+    this.price,
+    this.imageUrl,
+  });
   final String? id;
   final String? productId;
   final String? title;
@@ -11,17 +17,8 @@ class CartAttr with ChangeNotifier {
   final double? price;
   final String? imageUrl;
 
-  CartAttr({
-    this.id,
-    @required this.productId,
-    this.title,
-    this.quantity,
-    this.price,
-    this.imageUrl,
-  });
-
   Map<String, dynamic> toMap() {
-    return {
+    return <String, dynamic>{
       'id': id,
       'productId': productId,
       'title': title,
@@ -31,6 +28,7 @@ class CartAttr with ChangeNotifier {
     };
   }
 
+  // ignore: sort_constructors_first
   factory CartAttr.fromDocument(DocumentSnapshot<Map<String, dynamic>> docs) {
     return CartAttr(
       id: docs.data()!['id'].toString(),

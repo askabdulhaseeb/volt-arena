@@ -45,7 +45,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           unselectedItemColor: Colors.grey.shade700,
           selectedItemColor: Theme.of(context).colorScheme.primary,
           currentIndex: _selectedPageIndex,
-          items: const [
+          items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.room_service),
               label: 'Services',

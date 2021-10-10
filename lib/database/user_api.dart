@@ -1,9 +1,8 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:volt_arena_app/models/app_user.dart';
-import 'package:volt_arena_app/widgets/custom_toast.dart';
+import '../models/app_user.dart';
+import '../widgets/custom_toast.dart';
 
 class UserAPI {
   static const String _collection = 'users';
@@ -28,10 +27,10 @@ class UserAPI {
   }
 
   Future<String> uploadImage(File? file) async {
-    final ref = FirebaseStorage.instance
+    final Reference ref = FirebaseStorage.instance
         .ref()
         .child('usersImages')
-        .child('_fullName! ' + '.jpg');
+        .child('_fullName! ' '.jpg');
     await ref.putFile(file!);
     String url = await ref.getDownloadURL();
     return url;

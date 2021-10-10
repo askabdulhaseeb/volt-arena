@@ -73,7 +73,7 @@ class _LandingScreenState extends State<LandingScreen> {
         if (_login) {
           Navigator.of(context).pushNamedAndRemoveUntil(
             MainScreen.routeName,
-            (route) => false,
+            (Route<dynamic> route) => false,
           );
         } else {
           Navigator.of(context).pop();
@@ -122,8 +122,8 @@ class _LandingScreenState extends State<LandingScreen> {
         showLoadingDislog(context);
         final bool _login = await AuthMethod().loginAnonymosly();
         if (_login) {
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil(MainScreen.routeName, (route) => false);
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              MainScreen.routeName, (Route<dynamic> route) => false);
         } else {
           Navigator.of(context).pop();
         }

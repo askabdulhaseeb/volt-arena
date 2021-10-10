@@ -1,6 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AppUser {
+  AppUser({
+    this.id,
+    this.name,
+    this.imageUrl,
+    this.phoneNo,
+    this.password,
+    this.createdAt,
+    this.joinedAt,
+    this.isAdmin = false,
+    this.email,
+    this.androidNotificationToken = '',
+  });
   final String? id;
   final String? name;
   final String? imageUrl;
@@ -11,22 +23,9 @@ class AppUser {
   final bool? isAdmin;
   final String? email;
   final String? androidNotificationToken;
-  AppUser({
-    this.id,
-    this.name,
-    this.imageUrl,
-    this.phoneNo,
-    this.password,
-    this.createdAt,
-    this.joinedAt,
-    this.isAdmin=false,
-    this.email,
-    this.androidNotificationToken='',
-  });
-
 
   Map<String, dynamic> toMap() {
-    return {
+    return <String, dynamic>{
       'id': id!.trim(),
       'name': name!.trim(),
       'imageUrl': imageUrl!.trim(),
@@ -40,6 +39,7 @@ class AppUser {
     };
   }
 
+  // ignore: sort_constructors_first
   factory AppUser.fromDocument(DocumentSnapshot<Map<String, dynamic>> docs) {
     return AppUser(
       id: docs.data()!['id'].toString(),
@@ -50,7 +50,8 @@ class AppUser {
       joinedAt: docs.data()!['joinedAt'].toString(),
       isAdmin: bool.fromEnvironment(docs.data()!['isAdmin'].toString()),
       email: docs.data()!['email'].toString(),
-      androidNotificationToken: docs.data()!['androidNotificationToken'].toString(),
+      androidNotificationToken:
+          docs.data()!['androidNotificationToken'].toString(),
     );
   }
 }

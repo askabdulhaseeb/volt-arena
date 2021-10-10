@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
-import 'package:volt_arena_app/models/cart_attr.dart';
+import '../models/cart_attr.dart';
 
 class CartProvider with ChangeNotifier {
-  Map<String, CartAttr> _cartItems = {};
+  final Map<String, CartAttr> _cartItems = <String, CartAttr> {};
   Map<String, CartAttr> get getCartItems {
-    return {..._cartItems};
+    return <String, CartAttr> {..._cartItems};
   }
 
   double get totalAmount {
-    var total = 0.0;
-    _cartItems.forEach((key, value) {
+    double total = 0.0;
+    _cartItems.forEach((String key, CartAttr value) {
       total += value.price! * value.quantity!;
     });
     return total;
@@ -20,7 +20,7 @@ class CartProvider with ChangeNotifier {
     if (_cartItems.containsKey(productId)) {
       _cartItems.update(
         productId,
-        (exitingCartItem) => CartAttr(
+        (CartAttr exitingCartItem) => CartAttr(
           id: exitingCartItem.id,
           productId: exitingCartItem.productId,
           title: exitingCartItem.title,
@@ -51,7 +51,7 @@ class CartProvider with ChangeNotifier {
     if (_cartItems.containsKey(productId)) {
       _cartItems.update(
         productId,
-        (exitingCartItem) => CartAttr(
+        (CartAttr exitingCartItem) => CartAttr(
           id: exitingCartItem.id,
           productId: exitingCartItem.productId,
           title: exitingCartItem.title,

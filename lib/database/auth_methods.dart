@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:volt_arena_app/database/user_api.dart';
-import 'package:volt_arena_app/models/app_user.dart';
-import 'package:volt_arena_app/widgets/custom_toast.dart';
+import '../models/app_user.dart';
+import '../widgets/custom_toast.dart';
+import 'user_api.dart';
 import 'user_local_data.dart';
 
 class AuthMethod {
@@ -16,10 +16,10 @@ class AuthMethod {
   Future<bool> loginAnonymosly() async {
     try {
       await _auth.signInAnonymously();
-      var date = DateTime.now().toString();
-      var dateparse = DateTime.parse(date);
-      var formattedDate =
-          "${dateparse.day}-${dateparse.month}-${dateparse.year}";
+      String date = DateTime.now().toString();
+      DateTime dateparse = DateTime.parse(date);
+      String formattedDate =
+          '${dateparse.day}-${dateparse.month}-${dateparse.year}';
       final AppUser appUser = AppUser(
         id: DateTime.now().microsecond.toString(),
         name: 'Guest User',
@@ -41,17 +41,18 @@ class AuthMethod {
   }
 
   Future<bool> signinWithGoogle() async {
-    final googleSignIn = GoogleSignIn();
-    final googleAccount = await googleSignIn.signIn();
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    final GoogleSignInAccount? googleAccount = await googleSignIn.signIn();
     if (googleAccount != null) {
-      final googleAuth = await googleAccount.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleAccount.authentication;
       if (googleAuth.accessToken != null && googleAuth.idToken != null) {
         try {
-          var date = DateTime.now().toString();
-          var dateparse = DateTime.parse(date);
-          var formattedDate =
-              "${dateparse.day}-${dateparse.month}-${dateparse.year}";
-          final authResult = await _auth.signInWithCredential(
+          String date = DateTime.now().toString();
+          DateTime dateparse = DateTime.parse(date);
+          String formattedDate =
+              '${dateparse.day}-${dateparse.month}-${dateparse.year}';
+          final UserCredential authResult = await _auth.signInWithCredential(
               GoogleAuthProvider.credential(
                   idToken: googleAuth.idToken,
                   accessToken: googleAuth.accessToken));
