@@ -19,7 +19,6 @@ class _LandingScreenState extends State<LandingScreen> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -139,7 +138,7 @@ class _LandingScreenState extends State<LandingScreen> {
           border: Border.all(color: Theme.of(context).colorScheme.secondary),
         ),
         child: const Text(
-          'Sign in as a guest',
+          'Sign in as a Guest',
           style: TextStyle(
             letterSpacing: 1,
             fontSize: 20,

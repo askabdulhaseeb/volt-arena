@@ -128,36 +128,35 @@ class _SignupScreenState extends State<SignupScreen> {
         padding: EdgeInsets.symmetric(horizontal: Utilities.padding),
         child: Form(
           key: _key,
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                _signupLine(context),
-                const SizedBox(height: 20),
-                _imageWidget(),
-                const SizedBox(height: 20),
-                CustomTextFormField(
-                  title: 'Name',
-                  controller: _name,
-                  autoFocus: true,
-                  validator: (String? value) =>
-                      CustomValidator.lessThen4(value),
-                ),
-                CustomTextFormField(
-                  title: 'Email',
-                  controller: _email,
-                  validator: (String? value) => CustomValidator.email(value),
-                ),
-                PasswordTextFormField(controller: _password),
-                PasswordTextFormField(
-                  controller: _confirmPassword,
-                  title: 'Confirm Password',
-                ),
-                CustomTextButton(
-                  onTap: () => _submitForm(),
-                  text: 'Sign up',
-                )
-              ],
-            ),
+          child: Column(
+            children: <Widget>[
+              _signupLine(context),
+              const SizedBox(height: 20),
+              _imageWidget(),
+              const SizedBox(height: 20),
+              CustomTextFormField(
+                title: 'Name',
+                controller: _name,
+                autoFocus: true,
+                validator: (String? value) =>
+                    CustomValidator.lessThen4(value),
+              ),
+              CustomTextFormField(
+                title: 'Email',
+                controller: _email,
+                hint: 'test@test.com',
+                validator: (String? value) => CustomValidator.email(value),
+              ),
+              PasswordTextFormField(controller: _password),
+              PasswordTextFormField(
+                controller: _confirmPassword,
+                title: 'Confirm Password',
+              ),
+              CustomTextButton(
+                onTap: () => _submitForm(),
+                text: 'Sign up',
+              )
+            ],
           ),
         ),
       ),
