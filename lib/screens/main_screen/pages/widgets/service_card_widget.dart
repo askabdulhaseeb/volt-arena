@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:volt_arena_app/models/product.dart';
+import 'package:volt_arena_app/screens/service_detail_screen/service_detail_screen.dart';
 import 'package:volt_arena_app/utilities/custom_images.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
 
@@ -11,7 +12,14 @@ class ServiceCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute<ServiceDetailScreen>(
+            builder: (BuildContext context) =>
+                ServiceDetailScreen(product: product),
+          ),
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4),
         child: ClipRRect(
