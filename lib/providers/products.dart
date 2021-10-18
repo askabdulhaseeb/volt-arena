@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:volt_arena_app/database/product_api.dart';
 import '../models/product.dart';
 
 class Products with ChangeNotifier {
@@ -9,16 +10,17 @@ class Products with ChangeNotifier {
   }
 
   Future<void> fetchProducts() async {
-    await FirebaseFirestore.instance
-        .collection('products')
-        .get()
-        // ignore: always_specify_types
-        .then((QuerySnapshot productsSnapshot) {
-      _products = <Product>[];
-      for (QueryDocumentSnapshot<Object?> element in productsSnapshot.docs) {
-        _products.insert(0, Product.fromDocument(element));
-      }
-    });
+    final QuerySnapshot<Map<String, dynamic>> _docs =
+        await ProductAPI().getAllProducts();
+
+    _products = <Product>[];
+    for (DocumentSnapshot<Map<String, dynamic>> element in _docs.docs) {
+      _products.insert(0, Product.fromDocument(element));
+      print(products[0].isPopular);
+      print(products[0].isFavorite);
+      print(products[0].isIndividual);
+      print('done');
+    }
   }
 
   List<Product> get popularProducts {

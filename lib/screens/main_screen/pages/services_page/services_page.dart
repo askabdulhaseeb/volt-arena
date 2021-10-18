@@ -1,18 +1,56 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:volt_arena_app/database/product_api.dart';
+import 'package:volt_arena_app/models/product.dart';
+import 'package:volt_arena_app/providers/products.dart';
+import 'package:volt_arena_app/screens/main_screen/pages/widgets/service_card_widget.dart';
+import 'package:volt_arena_app/utilities/custom_images.dart';
+import 'package:volt_arena_app/utilities/utilities.dart';
 import '../../../../providers/cart_provider.dart';
 import '../../../../providers/favs_provider.dart';
 import '../../../../widgets/custom_drawer.dart';
 
-class ServicesPage extends StatelessWidget {
+class ServicesPage extends StatefulWidget {
   const ServicesPage({Key? key}) : super(key: key);
+  @override
+  State<ServicesPage> createState() => _ServicesPageState();
+}
+
+class _ServicesPageState extends State<ServicesPage> {
+  Future<void> _getProductsOnRefresh() async {
+    await Provider.of<Products>(context, listen: false).fetchProducts();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getProductsOnRefresh();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final Products productsProvider = Provider.of<Products>(context);
     return Scaffold(
       appBar: _appBar(context),
       drawer: const CustomDrawer(),
+      body: Padding(
+        padding: EdgeInsets.all(Utilities.padding),
+        child: RefreshIndicator(
+          onRefresh: _getProductsOnRefresh,
+          child: ListView.builder(
+            itemCount: productsProvider.products.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ServiceCardWidget(
+                product: productsProvider.products[index],
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 
@@ -53,8 +91,24 @@ class ServicesPage extends StatelessWidget {
             ),
             child: IconButton(
               icon: const Icon(Icons.shopping_cart_outlined),
-              onPressed: () {
+              onPressed: () async {
                 // Navigator.of(context).pushNamed(CartScreen.routeName);
+                Product product = Product(
+                  title: 'Special Title',
+                  description:
+                      'descripition: Search for Thesis Writing Services Uk on GigaPromo. Compare and save now! Large Selection. Always Sale. Cheap Prices. Full Offer. Save Online. Compare Online. Simple Search. The Best Price. Compare Simply. Services: Compare, Search, Find Products',
+                  gameTime: '40 mints',
+                  groupMembers: 10,
+                  isFavorite: false,
+                  isPopular: true,
+                  imageUrl: '',
+                  isIndividual: false,
+                  pallets: 'pallets',
+                  price: 5050,
+                  productCategoryName: 'productCategoryName',
+                  productId: DateTime.now().microsecondsSinceEpoch.toString(),
+                );
+                await ProductAPI().addProduct(product);
               },
             ),
           ),
