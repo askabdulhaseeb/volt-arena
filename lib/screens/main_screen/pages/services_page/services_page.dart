@@ -6,6 +6,7 @@ import 'package:volt_arena_app/models/product.dart';
 import 'package:volt_arena_app/providers/products.dart';
 import 'package:volt_arena_app/screens/cart_screen/cart_screen.dart';
 import 'package:volt_arena_app/screens/main_screen/pages/widgets/service_card_widget.dart';
+import 'package:volt_arena_app/screens/wishlist_screen/wishlist_screen.dart';
 import 'package:volt_arena_app/utilities/custom_images.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
 import '../../../../providers/cart_provider.dart';
@@ -75,7 +76,7 @@ class _ServicesPageState extends State<ServicesPage> {
                 color: Theme.of(context).colorScheme.secondary,
               ),
               onPressed: () {
-                // Navigator.of(context).pushNamed(WishlistScreen.routeName);
+                Navigator.of(context).pushNamed(WishListScreen.routeName);
               },
             ),
           ),
