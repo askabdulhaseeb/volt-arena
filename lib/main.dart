@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:volt_arena_app/providers/bottom_navigation_bar_provider.dart';
 import 'configs/theme.dart';
 import 'database/user_local_data.dart';
 import 'providers/cart_provider.dart';
@@ -38,6 +39,9 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider<ThemeProvider>(
           create: (BuildContext context) => ThemeProvider(),
+        ),
+        ChangeNotifierProvider<BottomNavigationBarProvider>.value(
+          value: BottomNavigationBarProvider(),
         ),
         ChangeNotifierProvider<CartProvider>.value(value: CartProvider()),
         ChangeNotifierProvider<FavsProvider>.value(value: FavsProvider()),
