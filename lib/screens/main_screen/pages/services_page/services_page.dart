@@ -9,6 +9,7 @@ import 'package:volt_arena_app/screens/main_screen/pages/widgets/service_card_wi
 import 'package:volt_arena_app/screens/wishlist_screen/wishlist_screen.dart';
 import 'package:volt_arena_app/utilities/custom_images.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
+import 'package:volt_arena_app/widgets/empty_iconic_widget.dart';
 import '../../../../providers/cart_provider.dart';
 import '../../../../providers/favs_provider.dart';
 import '../../../../widgets/custom_drawer.dart';
@@ -43,14 +44,39 @@ class _ServicesPageState extends State<ServicesPage> {
         padding: EdgeInsets.all(Utilities.padding),
         child: RefreshIndicator(
           onRefresh: _getProductsOnRefresh,
-          child: ListView.builder(
-            itemCount: productsProvider.products.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ServiceCardWidget(
-                product: productsProvider.products[index],
-              );
-            },
-          ),
+          child: productsProvider.products.isEmpty
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.room_service_outlined,
+                        size: 60,
+                        color: Colors.grey.shade600,
+                      ),
+                      const SizedBox(height: 16),
+                      const Text(
+                        'No Service Available',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w300),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Look like no service\nis available yet',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.grey.shade600),
+                      ),
+                    ],
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: productsProvider.products.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ServiceCardWidget(
+                      product: productsProvider.products[index],
+                    );
+                  },
+                ),
         ),
       ),
     );
