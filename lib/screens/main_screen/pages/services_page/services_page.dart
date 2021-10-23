@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:volt_arena_app/database/product_api.dart';
 import 'package:volt_arena_app/models/product.dart';
 import 'package:volt_arena_app/providers/products.dart';
+import 'package:volt_arena_app/screens/cart_screen/cart_screen.dart';
 import 'package:volt_arena_app/screens/main_screen/pages/widgets/service_card_widget.dart';
 import 'package:volt_arena_app/utilities/custom_images.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
@@ -92,23 +93,23 @@ class _ServicesPageState extends State<ServicesPage> {
             child: IconButton(
               icon: const Icon(Icons.shopping_cart_outlined),
               onPressed: () async {
-                // Navigator.of(context).pushNamed(CartScreen.routeName);
-                Product product = Product(
-                  title: 'Special Title',
-                  description:
-                      'descripition: Search for Thesis Writing Services Uk on GigaPromo. Compare and save now! Large Selection. Always Sale. Cheap Prices. Full Offer. Save Online. Compare Online. Simple Search. The Best Price. Compare Simply. Services: Compare, Search, Find Products',
-                  gameTime: '40 mints',
-                  groupMembers: 10,
-                  isFavorite: false,
-                  isPopular: true,
-                  imageUrl: '',
-                  isIndividual: false,
-                  pallets: 'pallets',
-                  price: 5050,
-                  productCategoryName: 'productCategoryName',
-                  productId: DateTime.now().microsecondsSinceEpoch.toString(),
-                );
-                await ProductAPI().addProduct(product);
+                Navigator.of(context).pushNamed(CartScreen.routeName);
+                // Product product = Product(
+                //   title: 'Special Title',
+                //   description:
+                //       'descripition: Search for Thesis Writing Services Uk on GigaPromo. Compare and save now! Large Selection. Always Sale. Cheap Prices. Full Offer. Save Online. Compare Online. Simple Search. The Best Price. Compare Simply. Services: Compare, Search, Find Products',
+                //   gameTime: '40 mints',
+                //   groupMembers: 10,
+                //   isFavorite: false,
+                //   isPopular: true,
+                //   imageUrl: '',
+                //   isIndividual: false,
+                //   pallets: 'pallets',
+                //   price: 5050,
+                //   productCategoryName: 'productCategoryName',
+                //   productId: DateTime.now().microsecondsSinceEpoch.toString(),
+                // );
+                // await ProductAPI().addProduct(product);
               },
             ),
           ),
