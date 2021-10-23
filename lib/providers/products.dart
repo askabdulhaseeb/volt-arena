@@ -16,10 +16,6 @@ class Products with ChangeNotifier {
     _products = <Product>[];
     for (DocumentSnapshot<Map<String, dynamic>> element in _docs.docs) {
       _products.insert(0, Product.fromDocument(element));
-      print(products[0].isPopular);
-      print(products[0].isFavorite);
-      print(products[0].isIndividual);
-      print('done');
     }
   }
 

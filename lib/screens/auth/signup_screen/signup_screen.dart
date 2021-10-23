@@ -24,53 +24,53 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  @override
-  Widget build(BuildContext context) {
-    final TextEditingController _name = TextEditingController();
-    final TextEditingController _email = TextEditingController();
-    final TextEditingController _password = TextEditingController();
-    final TextEditingController _confirmPassword = TextEditingController();
-    final GlobalKey<FormState> _key = GlobalKey<FormState>();
-    File? _pickedImage;
-    void _submitForm() async {
-      if (_key.currentState!.validate()) {
-        if (_password.text.trim() == _confirmPassword.text.trim()) {
-          showLoadingDislog(context);
-          FocusScope.of(context).unfocus();
-          final User? _user = await AuthMethod().signupWithEmailAndPassword(
-            email: _email.text,
-            password: _password.text,
-          );
-          String date = DateTime.now().toString();
-          DateTime dateparse = DateTime.parse(date);
-          String formattedDate =
-              '${dateparse.day}-${dateparse.month}-${dateparse.year}';
-          AppUser _appUser = AppUser(
-            id: _user!.uid,
-            name: _name.text.trim(),
-            email: _email.text.trim(),
-            phoneNo: '',
-            imageUrl: '',
-            createdAt: Timestamp.now(),
-            joinedAt: formattedDate,
-            password: _password.text.trim(),
-          );
-          final bool _save = await UserAPI().addUser(_appUser);
-          if (_save) {
-            CustomToast.successToast(message: 'Signup successfully');
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                LandingScreen.routeName, (Route<dynamic> route) => false);
-          } else {
-            Navigator.of(context).pop();
-          }
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _confirmPassword = TextEditingController();
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  File? _pickedImage;
+  void _submitForm() async {
+    if (_key.currentState!.validate()) {
+      if (_password.text.trim() == _confirmPassword.text.trim()) {
+        showLoadingDislog(context);
+        FocusScope.of(context).unfocus();
+        final User? _user = await AuthMethod().signupWithEmailAndPassword(
+          email: _email.text,
+          password: _password.text,
+        );
+        String date = DateTime.now().toString();
+        DateTime dateparse = DateTime.parse(date);
+        String formattedDate =
+            '${dateparse.day}-${dateparse.month}-${dateparse.year}';
+        AppUser _appUser = AppUser(
+          id: _user!.uid,
+          name: _name.text.trim(),
+          email: _email.text.trim(),
+          phoneNo: '',
+          imageUrl: '',
+          createdAt: Timestamp.now(),
+          joinedAt: formattedDate,
+          password: _password.text.trim(),
+        );
+        final bool _save = await UserAPI().addUser(_appUser);
+        if (_save) {
+          CustomToast.successToast(message: 'Signup successfully');
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              LandingScreen.routeName, (Route<dynamic> route) => false);
         } else {
-          CustomToast.errorToast(
-            message: 'Password and confirm password should be same',
-          );
+          Navigator.of(context).pop();
         }
+      } else {
+        CustomToast.errorToast(
+          message: 'Password and confirm password should be same',
+        );
       }
     }
+  }
 
+  @override
+  Widget build(BuildContext context) {
     void _pickImageGallery() async {
       final ImagePicker picker = ImagePicker();
       final XFile? pickedImage =
@@ -138,8 +138,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 title: 'Name',
                 controller: _name,
                 autoFocus: true,
-                validator: (String? value) =>
-                    CustomValidator.lessThen4(value),
+                validator: (String? value) => CustomValidator.lessThen4(value),
               ),
               CustomTextFormField(
                 title: 'Email',
