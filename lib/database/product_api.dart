@@ -15,4 +15,16 @@ class ProductAPI {
   Future<QuerySnapshot<Map<String, dynamic>>> getAllProducts() async {
     return await _instance.collection(_collection).get();
   }
+
+  Future<List<Product>> searchProducts(String name) async {
+    QuerySnapshot<Map<String, dynamic>> _doc = await FirebaseFirestore.instance
+        .collection(_collection)
+        .where('title', isGreaterThanOrEqualTo: name.toUpperCase())
+        .get();
+    List<Product> _products = <Product>[];
+    for (DocumentSnapshot<Map<String, dynamic>> docss in _doc.docs) {
+      _products.add(Product.fromDocument(docss));
+    }
+    return _products;
+  }
 }

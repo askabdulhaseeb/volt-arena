@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:volt_arena_app/database/product_api.dart';
 import 'package:volt_arena_app/models/product.dart';
 import 'package:volt_arena_app/providers/bottom_navigation_bar_provider.dart';
 import 'package:volt_arena_app/providers/products.dart';
@@ -15,23 +18,36 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  Future<void> _onChange(String value) async {}
-  Future<void> _getProductsOnRefresh() async {
-    await Provider.of<Products>(context, listen: false).fetchProducts();
-    if (mounted) {
-      setState(() {});
+  List<Product> _products = <Product>[];
+  bool _isLoading = false;
+  Timer? searchOnStoppedTyping;
+  Future<void> _onChange(String value) async {
+    const Duration duration = Duration(milliseconds: 800);
+    if (searchOnStoppedTyping != null) {
+      setState(() => searchOnStoppedTyping!.cancel());
     }
+    searchOnStoppedTyping = Timer(
+      duration,
+      () async {
+        setState(() {
+          _isLoading = true;
+        });
+        _products = await ProductAPI().searchProducts(value);
+        setState(() {
+          _isLoading = false;
+        });
+      },
+    );
+    setState(() {});
   }
 
   @override
   void initState() {
     super.initState();
-    _getProductsOnRefresh();
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<Product> _products = Provider.of<Products>(context).products;
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -46,21 +62,24 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
           ),
+          const SizedBox(height: 10),
           Expanded(
-            child: (_products.isEmpty)
-                ? const EmptyIconicWidget(
-                    icon: Icons.error_outline,
-                    title: 'No service found!!!',
-                    subtitle: 'You can checkout all service',
-                  )
-                : ListView.builder(
-                    itemCount: _products.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ServicesTileWidget(
-                        product: _products[index],
-                      );
-                    },
-                  ),
+            child: (_isLoading)
+                ? const Center(child: CircularProgressIndicator())
+                : (_products.isEmpty)
+                    ? const EmptyIconicWidget(
+                        icon: Icons.error_outline,
+                        title: 'No service found!!!',
+                        subtitle: 'You can checkout all service',
+                      )
+                    : ListView.builder(
+                        itemCount: _products.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ServicesTileWidget(
+                            product: _products[index],
+                          );
+                        },
+                      ),
           ),
         ],
       ),

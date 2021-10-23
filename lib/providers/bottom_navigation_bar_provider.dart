@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class BottomNavigationBarProvider extends ChangeNotifier {
   // ignore: prefer_final_fields
-  int _selectedPage = 0;
+  int _selectedPage = 1;
 
   void updateSelectedPage(int updatedPage) {
     _selectedPage = updatedPage;
