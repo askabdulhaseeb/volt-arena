@@ -39,16 +39,25 @@ class _SignupScreenState extends State<SignupScreen> {
           email: _email.text,
           password: _password.text,
         );
+        if (_user == null) {
+          Navigator.of(context).pop();
+          return;
+        }
         String date = DateTime.now().toString();
         DateTime dateparse = DateTime.parse(date);
         String formattedDate =
             '${dateparse.day}-${dateparse.month}-${dateparse.year}';
+        String _imageURL = '';
+        if (_pickedImage != null) {
+          _imageURL =
+              await UserAPI().uploadImage(File(_pickedImage!.path), _user.uid);
+        }
         AppUser _appUser = AppUser(
-          id: _user!.uid,
+          id: _user.uid,
           name: _name.text.trim(),
           email: _email.text.trim(),
           phoneNo: '',
-          imageUrl: '',
+          imageUrl: _imageURL,
           createdAt: Timestamp.now(),
           joinedAt: formattedDate,
           password: _password.text.trim(),

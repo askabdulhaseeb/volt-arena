@@ -17,7 +17,7 @@ class _ChatListPageState extends State<ChatListPage> {
         centerTitle: true,
         title: const Text('All Chats'),
       ),
-      body: EmptyIconicWidget(
+      body: const EmptyIconicWidget(
         icon: Icons.chat,
         title: 'No chat available',
         subtitle: '''No announcement available''',

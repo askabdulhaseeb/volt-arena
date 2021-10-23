@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (_user != null) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           MainScreen.routeName,
-                          (Route<dynamic> route) => false);
+                          (Route<dynamic> route) => false,);
                     } else {
                       Navigator.of(context).pop();
                       CustomToast.errorToast(

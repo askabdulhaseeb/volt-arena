@@ -115,14 +115,6 @@ class ServiceDetailScreen extends StatelessWidget {
             title: 'Price: ',
             subtitle: '${product.price}',
           ),
-          _richTextInfo(
-            title: 'Quantity: ',
-            subtitle: '${product.groupMembers}',
-          ),
-          _richTextInfo(
-            title: 'Popularity: ',
-            subtitle: (product.isPopular!) ? 'Popular' : 'Regular',
-          ),
         ],
       ),
     );
