@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:volt_arena_app/widgets/empty_iconic_widget.dart';
 
-class ChatListPage extends StatelessWidget {
+class ChatListPage extends StatefulWidget {
   const ChatListPage({Key? key}) : super(key: key);
+  @override
+  State<ChatListPage> createState() => _ChatListPageState();
+}
 
+class _ChatListPageState extends State<ChatListPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Chat List Page'),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text('All Chats'),
+      ),
+      body: EmptyIconicWidget(
+        icon: Icons.chat,
+        title: 'No chat available',
+        subtitle: '''No announcement available''',
       ),
     );
   }
