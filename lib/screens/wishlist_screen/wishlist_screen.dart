@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:volt_arena_app/models/favs_attr.dart';
-import 'package:volt_arena_app/providers/favs_provider.dart';
-import 'package:volt_arena_app/widgets/empty_iconic_widget.dart';
+import '../../../models/favs_attr.dart';
+import '../../../providers/favs_provider.dart';
+import '../../../widgets/empty_iconic_widget.dart';
 
 class WishListScreen extends StatelessWidget {
   const WishListScreen({Key? key}) : super(key: key);

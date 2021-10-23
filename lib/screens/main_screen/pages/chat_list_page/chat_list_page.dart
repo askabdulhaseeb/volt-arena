@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:volt_arena_app/widgets/empty_iconic_widget.dart';
+import '../../../../widgets/empty_iconic_widget.dart';
 
 class ChatListPage extends StatefulWidget {
   const ChatListPage({Key? key}) : super(key: key);

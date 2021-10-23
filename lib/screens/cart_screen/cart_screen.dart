@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'package:volt_arena_app/models/cart_attr.dart';
-import 'package:volt_arena_app/providers/bottom_navigation_bar_provider.dart';
-import 'package:volt_arena_app/providers/cart_provider.dart';
-import 'package:volt_arena_app/utilities/custom_images.dart';
-import 'package:volt_arena_app/widgets/empty_iconic_widget.dart';
+import '../../models/cart_attr.dart';
+import '../../providers/cart_provider.dart';
+import '../../widgets/empty_iconic_widget.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);

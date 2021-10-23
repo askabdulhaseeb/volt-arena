@@ -1,9 +1,9 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:volt_arena_app/models/product.dart';
-import 'package:volt_arena_app/screens/service_detail_screen/service_detail_screen.dart';
-import 'package:volt_arena_app/utilities/custom_images.dart';
-import 'package:volt_arena_app/utilities/utilities.dart';
+import '../../../../models/product.dart';
+import '../../../../screens/service_detail_screen/service_detail_screen.dart';
+import '../../../../utilities/custom_images.dart';
+import '../../../../utilities/utilities.dart';
 
 class ServiceCardWidget extends StatelessWidget {
   const ServiceCardWidget({required this.product, Key? key}) : super(key: key);

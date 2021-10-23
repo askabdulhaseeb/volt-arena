@@ -1,15 +1,11 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:volt_arena_app/database/product_api.dart';
-import 'package:volt_arena_app/models/product.dart';
-import 'package:volt_arena_app/providers/bottom_navigation_bar_provider.dart';
-import 'package:volt_arena_app/providers/products.dart';
-import 'package:volt_arena_app/screens/main_screen/pages/widgets/service_tile_widget.dart';
-import 'package:volt_arena_app/utilities/utilities.dart';
-import 'package:volt_arena_app/widgets/empty_iconic_widget.dart';
+import '../../../../database/product_api.dart';
+import '../../../../models/product.dart';
+import '../../../../utilities/utilities.dart';
+import '../../../../widgets/empty_iconic_widget.dart';
+import '../widgets/service_tile_widget.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);

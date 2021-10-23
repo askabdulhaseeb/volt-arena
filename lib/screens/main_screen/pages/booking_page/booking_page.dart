@@ -1,10 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:volt_arena_app/utilities/custom_images.dart';
-import 'package:volt_arena_app/utilities/utilities.dart';
-import 'package:volt_arena_app/widgets/empty_image_widget.dart';
+import '../../../../utilities/custom_images.dart';
+import '../../../../utilities/utilities.dart';
+import '../../../../widgets/empty_image_widget.dart';
 
 class BookingPage extends StatefulWidget {
   const BookingPage({Key? key}) : super(key: key);
@@ -15,6 +14,7 @@ class BookingPage extends StatefulWidget {
 class _BookingPageState extends State<BookingPage> {
   bool _isLoading = false;
   Timer? searchOnStoppedTyping;
+  // ignore: prefer_final_fields
   List<int> _booking = <int>[]; //TODO: replace int with object
 
   Future<void> _onChange(String value) async {

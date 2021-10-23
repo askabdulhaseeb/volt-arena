@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:volt_arena_app/screens/main_screen/bottom_bar_screen.dart';
+import 'bottom_bar_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);

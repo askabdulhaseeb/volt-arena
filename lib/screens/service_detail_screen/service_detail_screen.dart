@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:volt_arena_app/models/product.dart';
-import 'package:volt_arena_app/utilities/custom_images.dart';
-import 'package:volt_arena_app/utilities/utilities.dart';
+import '../../../models/product.dart';
+import '../../../utilities/custom_images.dart';
+import '../../../utilities/utilities.dart';
 
 class ServiceDetailScreen extends StatelessWidget {
   const ServiceDetailScreen({required this.product, Key? key})

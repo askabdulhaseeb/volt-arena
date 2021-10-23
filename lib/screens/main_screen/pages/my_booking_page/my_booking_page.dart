@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:volt_arena_app/providers/bottom_navigation_bar_provider.dart';
-import 'package:volt_arena_app/screens/main_screen/pages/widgets/service_tile_widget.dart';
-import 'package:volt_arena_app/utilities/custom_images.dart';
-import 'package:volt_arena_app/widgets/empty_image_widget.dart';
+import '../../../../utilities/custom_images.dart';
+import '../../../../widgets/empty_image_widget.dart';
 
 class MyBookingPage extends StatefulWidget {
   const MyBookingPage({Key? key}) : super(key: key);
