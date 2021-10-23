@@ -6,6 +6,7 @@ import 'package:volt_arena_app/providers/bottom_navigation_bar_provider.dart';
 import 'package:volt_arena_app/providers/products.dart';
 import 'package:volt_arena_app/screens/main_screen/pages/widgets/service_tile_widget.dart';
 import 'package:volt_arena_app/utilities/utilities.dart';
+import 'package:volt_arena_app/widgets/empty_iconic_widget.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -47,30 +48,10 @@ class _SearchPageState extends State<SearchPage> {
           ),
           Expanded(
             child: (_products.isEmpty)
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        const Icon(Icons.error_outline,
-                            size: 60, color: Colors.grey),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'No service found!!!',
-                          style: TextStyle(color: Colors.grey, fontSize: 20),
-                        ),
-                        Consumer<BottomNavigationBarProvider>(
-                          builder: (
-                            BuildContext context,
-                            BottomNavigationBarProvider page,
-                            _,
-                          ) =>
-                              TextButton(
-                            onPressed: () => page.updateSelectedPage(0),
-                            child: const Text('SHOP NOW'),
-                          ),
-                        ),
-                      ],
-                    ),
+                ? const EmptyIconicWidget(
+                    icon: Icons.error_outline,
+                    title: 'No service found!!!',
+                    subtitle: 'You can checkout all service',
                   )
                 : ListView.builder(
                     itemCount: _products.length,
