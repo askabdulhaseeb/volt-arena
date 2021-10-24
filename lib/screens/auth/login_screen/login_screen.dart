@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../../database/auth_methods.dart';
-import '../../../utilities/custom_validator.dart';
-import '../../../utilities/utilities.dart';
-import '../../../widgets/custom_button.dart';
-import '../../../widgets/custom_textformfield.dart';
-import '../../../widgets/custom_toast.dart';
-import '../../../widgets/password_textformfield.dart';
-import '../../../widgets/show_loading.dart';
-import '../../main_screen/main_screen.dart';
+import 'package:volt_arena_app/database/auth_methods.dart';
+import 'package:volt_arena_app/screens/main_screen/main_screen.dart';
+import 'package:volt_arena_app/utilities/custom_validator.dart';
+import 'package:volt_arena_app/utilities/utilities.dart';
+import 'package:volt_arena_app/widgets/custom_button.dart';
+import 'package:volt_arena_app/widgets/custom_textformfield.dart';
+import 'package:volt_arena_app/widgets/custom_toast.dart';
+import 'package:volt_arena_app/widgets/password_textformfield.dart';
+import 'package:volt_arena_app/widgets/show_loading.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
