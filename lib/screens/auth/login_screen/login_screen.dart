@@ -10,6 +10,8 @@ import 'package:volt_arena_app/widgets/custom_toast.dart';
 import 'package:volt_arena_app/widgets/password_textformfield.dart';
 import 'package:volt_arena_app/widgets/show_loading.dart';
 
+import '../forget_password.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
   static const String routeName = '/LoginScreen';
@@ -79,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
   GestureDetector _forgetPassword() {
     return GestureDetector(
       onTap: () {
-        // TODO: Forget password
+        Navigator.pushNamed(context, ForgetPassword.routeName);
       },
       child: Container(
         padding: const EdgeInsets.all(6),
