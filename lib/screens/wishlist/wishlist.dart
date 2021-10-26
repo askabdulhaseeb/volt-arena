@@ -1,9 +1,9 @@
-import 'package:volt_arena/consts/my_icons.dart';
-import 'package:volt_arena/provider/favs_provider.dart';
-import 'package:volt_arena/services/global_method.dart';
+// ignore_for_file: always_specify_types
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:volt_arena_app/providers/favs_provider.dart';
+import 'package:volt_arena_app/utilities/global_method.dart';
 import 'wishlist_empty.dart';
 import 'wishlist_full.dart';
 
@@ -12,7 +12,7 @@ class WishlistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GlobalMethods globalMethods = GlobalMethods();
-    final favsProvider = Provider.of<FavsProvider>(context);
+    final FavsProvider favsProvider = Provider.of<FavsProvider>(context);
     return favsProvider.getFavsItems.isEmpty
         ? Scaffold(body: WishlistEmpty())
         : Scaffold(
@@ -28,7 +28,7 @@ class WishlistScreen extends StatelessWidget {
                         context);
                     // cartProvider.clearCart();
                   },
-                  icon: Icon(MyAppIcons.trash),
+                  icon: const Icon(Icons.delete),
                 )
               ],
             ),

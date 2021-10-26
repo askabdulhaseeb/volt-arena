@@ -39,7 +39,7 @@ class WishlistEmpty extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.height * 0.06,
             child: RaisedButton(

@@ -80,7 +80,7 @@ class _WishlistFullState extends State<WishlistFull> {
   }
 
   Widget positionedRemove(String productId) {
-    final favsProvider = Provider.of<FavsProvider>(context);
+    final FavsProvider favsProvider = Provider.of<FavsProvider>(context);
     GlobalMethods globalMethods = GlobalMethods();
     return Positioned(
       top: 20,
@@ -97,13 +97,13 @@ class _WishlistFullState extends State<WishlistFull> {
               Icons.clear,
               color: Colors.white,
             ),
-            onPressed: () => {
-                  globalMethods.showDialogg(
-                      'Remove wish!',
-                      'This product will be removed from your wishlist!',
-                      () => favsProvider.removeItem(productId),
-                      context),
-                }),
+            onPressed: () {
+              globalMethods.showDialogg(
+                  'Remove wish!',
+                  'This product will be removed from your wishlist!',
+                  () => favsProvider.removeItem(productId),
+                  context);
+            }),
       ),
     );
   }

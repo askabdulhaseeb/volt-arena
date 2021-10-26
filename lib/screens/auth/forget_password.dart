@@ -4,7 +4,7 @@ import 'package:volt_arena_app/utilities/global_method.dart';
 import 'package:volt_arena_app/widgets/custom_toast.dart';
 
 class ForgetPassword extends StatefulWidget {
-   const ForgetPassword({Key? key}) : super(key: key);
+  const ForgetPassword({Key? key}) : super(key: key);
 
   static const String routeName = '/ForgetPassword';
 
@@ -91,15 +91,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               ),
             ),
           ),
-         const  SizedBox(
+          const SizedBox(
             height: 20,
           ),
-           Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: _isLoading
-                ?  const Align(
+                ? const Align(
                     alignment: Alignment.center,
-                    child:  CircularProgressIndicator(
+                    child: CircularProgressIndicator(
                       color: Colors.green,
                     ),
                   )
@@ -115,16 +115,16 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     onPressed: _submitForm,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                         Text(
+                      children: const <Widget>[
+                        Text(
                           'Reset password',
-                          style:  TextStyle(
+                          style: TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 17),
                         ),
                         SizedBox(
                           width: 5,
                         ),
-                         Icon(
+                        Icon(
                           Icons.lock,
                           size: 18,
                         )
