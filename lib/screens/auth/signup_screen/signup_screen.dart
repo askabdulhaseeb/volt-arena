@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:volt_arena_app/models/users.dart';
 import '../../../database/auth_methods.dart';
 import '../../../database/user_api.dart';
 import '../../../models/app_user.dart';
@@ -52,11 +53,10 @@ class _SignupScreenState extends State<SignupScreen> {
           _imageURL =
               await UserAPI().uploadImage(File(_pickedImage!.path), _user.uid);
         }
-        AppUser _appUser = AppUser(
+        AppUserModel _appUser = AppUserModel(
           id: _user.uid,
           name: _name.text.trim(),
           email: _email.text.trim(),
-          phoneNo: '',
           imageUrl: _imageURL,
           createdAt: Timestamp.now(),
           joinedAt: formattedDate,

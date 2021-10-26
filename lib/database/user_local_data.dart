@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:volt_arena_app/models/app_user.dart';
+import 'package:volt_arena_app/models/users.dart';
 
 class UserLocalData {
   static late SharedPreferences? _preferences;
@@ -61,12 +61,11 @@ class UserLocalData {
   static String get getAndroidNotificationToken =>
       _preferences!.getString(_androidNotificationToken) ?? '';
 
-  void storeAppUserData({required AppUser appUser, String token = ''}) {
+  void storeAppUserData({required AppUserModel appUser, String token = ''}) {
     setUserUID(appUser.id!);
     setUserEmail(appUser.email!);
     setUserDisplayName(appUser.name!);
     setUserImageUrl(appUser.imageUrl!);
-    setUserPhoneNumber(appUser.phoneNo!);
     setUserCreatedAt(appUser.joinedAt!);
     setAndroidNotificationToken(token);
   }

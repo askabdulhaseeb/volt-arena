@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:volt_arena_app/providers/bottom_navigation_bar_provider.dart';
 import 'pages/services_page/services_page.dart';
 import 'pages/booking_page/booking_page.dart';
-import 'pages/calender_page/calender_page.dart';
 import 'pages/chat_list_page/chat_list_page.dart';
 import 'pages/my_booking_page/my_booking_page.dart';
 import 'pages/search_page/search_page.dart';
@@ -20,7 +19,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     ServicesPage(),
     SearchPage(),
     MyBookingPage(),
-    CalenderPage(),
+    // CalenderScreen(),
     BookingPage(),
     ChatListPage(),
   ];
@@ -55,10 +54,10 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               icon: Icon(Icons.calendar_today),
               label: 'Booking',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag),
-              label: 'All Users',
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.shopping_bag),
+            //   label: 'All Users',
+            // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person_pin_outlined),
               label: 'My Bookings',

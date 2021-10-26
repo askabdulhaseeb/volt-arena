@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../models/app_user.dart';
-import '../widgets/custom_toast.dart';
+import 'package:volt_arena_app/models/users.dart';
+import 'package:volt_arena_app/widgets/custom_toast.dart';
 import 'user_api.dart';
 import 'user_local_data.dart';
 
@@ -20,11 +20,10 @@ class AuthMethod {
       DateTime dateparse = DateTime.parse(date);
       String formattedDate =
           '${dateparse.day}-${dateparse.month}-${dateparse.year}';
-      final AppUser appUser = AppUser(
+      final AppUserModel appUser = AppUserModel(
         id: DateTime.now().microsecond.toString(),
         name: 'Guest User',
         email: 'guest@guest.com',
-        phoneNo: '',
         imageUrl: '',
         androidNotificationToken: '',
         createdAt: Timestamp.now(),
@@ -56,11 +55,10 @@ class AuthMethod {
               GoogleAuthProvider.credential(
                   idToken: googleAuth.idToken,
                   accessToken: googleAuth.accessToken));
-          final AppUser _appUser = AppUser(
+          final AppUserModel _appUser = AppUserModel(
             id: authResult.user!.uid,
             name: authResult.user!.displayName,
             email: authResult.user!.email,
-            phoneNo: authResult.user!.phoneNumber,
             imageUrl: authResult.user!.photoURL,
             joinedAt: formattedDate,
             createdAt: Timestamp.now(),
@@ -115,7 +113,7 @@ class AuthMethod {
       final User? user = result.user;
       final DocumentSnapshot<Map<String, dynamic>> docs =
           await UserAPI().getInfo(uid: user!.uid);
-      final AppUser appUser = AppUser.fromDocument(docs);
+      final AppUserModel appUser = AppUserModel.fromDocument(docs);
       UserLocalData().storeAppUserData(appUser: appUser);
       return user;
     } catch (signUpError) {

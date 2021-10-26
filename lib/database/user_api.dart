@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import '../models/app_user.dart';
+import 'package:volt_arena_app/models/users.dart';
 import '../widgets/custom_toast.dart';
 
 class UserAPI {
@@ -13,7 +13,7 @@ class UserAPI {
     return _instance.collection(_collection).doc(uid).get();
   }
 
-  Future<bool> addUser(AppUser appUser) async {
+  Future<bool> addUser(AppUserModel appUser) async {
     await _instance
         .collection(_collection)
         .doc(appUser.id)

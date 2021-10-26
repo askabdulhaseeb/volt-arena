@@ -62,7 +62,6 @@ class GlobalMethods {
             ),
             content: Text(subtitle),
             actions: [
-            
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
