@@ -169,18 +169,16 @@ class ServiceDetailScreen extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                IconButton(
-                  onPressed: () {
-                    // TODO: save services
-                  },
-                  icon: const Icon(Icons.save),
-                ),
-                IconButton(
-                  onPressed: () {
-                    // TODO: share services
-                  },
-                  icon: const Icon(Icons.share),
-                ),
+                // IconButton(
+                //   onPressed: () {
+                //   },
+                //   icon: const Icon(Icons.save),
+                // ),
+                // IconButton(
+                //   onPressed: () {
+                //   },
+                //   icon: const Icon(Icons.share),
+                // ),
               ],
             ),
           ),
