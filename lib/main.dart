@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:volt_arena_app/providers/bottom_navigation_bar_provider.dart';
 import 'package:volt_arena_app/screens/cart_screen/cart_screen.dart';
-import 'package:volt_arena_app/screens/wishlist_screen/wishlist_screen.dart';
+import 'package:volt_arena_app/screens/wishlist/wishlist.dart';
 import 'configs/theme.dart';
 import 'database/user_local_data.dart';
 import 'providers/cart_provider.dart';

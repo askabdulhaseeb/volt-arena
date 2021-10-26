@@ -1,9 +1,9 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:volt_arena_app/screens/wishlist/wishlist.dart';
 import '../../../../providers/products.dart';
 import '../../../../screens/cart_screen/cart_screen.dart';
-import '../../../../screens/wishlist_screen/wishlist_screen.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../../providers/cart_provider.dart';
 import '../../../../providers/favs_provider.dart';

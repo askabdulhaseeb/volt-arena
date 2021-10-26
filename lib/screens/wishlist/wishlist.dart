@@ -7,7 +7,9 @@ import 'package:volt_arena_app/utilities/global_method.dart';
 import 'wishlist_empty.dart';
 import 'wishlist_full.dart';
 
-class WishlistScreen extends StatelessWidget {
+class WishListScreen extends StatelessWidget {
+  const WishListScreen({Key? key}) : super(key: key);
+
   static const routeName = '/WishlistScreen';
   @override
   Widget build(BuildContext context) {
