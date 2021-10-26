@@ -1,14 +1,14 @@
-import 'package:volt_arena/consts/colors.dart';
-import 'package:volt_arena/models/favs_attr.dart';
-import 'package:volt_arena/provider/favs_provider.dart';
-import 'package:volt_arena/services/global_method.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:volt_arena_app/models/favs_attr.dart';
+import 'package:volt_arena_app/providers/favs_provider.dart';
+import 'package:volt_arena_app/utilities/global_method.dart';
 
 class WishlistFull extends StatefulWidget {
+  // ignore: use_key_in_widget_constructors
+  const WishlistFull({required this.productId});
   final String productId;
 
-  const WishlistFull({required this.productId});
   @override
   _WishlistFullState createState() => _WishlistFullState();
 }
@@ -16,12 +16,12 @@ class WishlistFull extends StatefulWidget {
 class _WishlistFullState extends State<WishlistFull> {
   @override
   Widget build(BuildContext context) {
-    final favsAttr = Provider.of<FavsAttr>(context);
+    final FavsAttr favsAttr = Provider.of<FavsAttr>(context);
     return Stack(
       children: <Widget>[
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(right: 30.0, bottom: 10.0),
+          margin: const EdgeInsets.only(right: 30.0, bottom: 10.0),
           child: Material(
             color: Theme.of(context).backgroundColor,
             borderRadius: BorderRadius.circular(5.0),
@@ -36,7 +36,7 @@ class _WishlistFullState extends State<WishlistFull> {
                   children: <Widget>[
                     Container(
                       height: 100,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(15),
                               topLeft: Radius.circular(15))),
@@ -45,7 +45,7 @@ class _WishlistFullState extends State<WishlistFull> {
                         fit: BoxFit.contain,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10.0,
                     ),
                     Expanded(
@@ -54,15 +54,15 @@ class _WishlistFullState extends State<WishlistFull> {
                         children: <Widget>[
                           Text(
                             favsAttr.title!,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 16.0, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20.0,
                           ),
                           Text(
-                            "\$ ${favsAttr.price}",
-                            style: TextStyle(
+                            '\$ ${favsAttr.price}',
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18.0),
                           ),
                         ],
@@ -85,15 +85,15 @@ class _WishlistFullState extends State<WishlistFull> {
     return Positioned(
       top: 20,
       right: 15,
-      child: Container(
+      child: SizedBox(
         height: 30,
         width: 30,
         child: MaterialButton(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0)),
-            padding: EdgeInsets.all(0.0),
-            color: ColorsConsts.favColor,
-            child: Icon(
+            padding: const EdgeInsets.all(0.0),
+            color: Colors.red,
+            child: const Icon(
               Icons.clear,
               color: Colors.white,
             ),
